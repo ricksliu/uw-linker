@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "UWLinker",
+  "description": "A Chrome extension that links various University of Waterloo sites and third-party sites.",
+  "version": "0.1",
+  "icons": {
+    "16": "media/uwl-icon-16.png",
+    "32": "media/uwl-icon-32.png",
+    "48": "media/uwl-icon-48.png",
+    "128": "media/uwl-icon-128.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.ugradcalendar.uwaterloo.ca/*",
+        "*://*.ucalendar.uwaterloo.ca/*",
+        "*://*.outline.uwaterloo.ca/*",
+        "*://*.uwflow.com/*",
+        "*://*.reddit.com/*"
+      ],
+      "js": [
+        "utility.js",
+        "tooltip/tooltip.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "media/uwl-icon-16.png",
+      "32": "media/uwl-icon-32.png",
+      "48": "media/uwl-icon-48.png",
+      "128": "media/uwl-icon-128.png"
+    }
+  }
+}
