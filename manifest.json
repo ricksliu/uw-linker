@@ -26,8 +26,12 @@
         "*://*.reddit.com/*"
       ],
       "js": [
-        "utility.js",
+        "utility/utility.js",
+        "utility/mousePos.js",
         "tooltip/tooltip.js"
+      ],
+      "css": [
+        "tooltip/tooltip.css"
       ]
     }
   ],
@@ -39,5 +43,20 @@
       "48": "media/uwl-icon-48.png",
       "128": "media/uwl-icon-128.png"
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "media/*",
+        "tooltip/*.html"
+      ],
+      "matches": [
+        "*://*.ugradcalendar.uwaterloo.ca/*",
+        "*://*.ucalendar.uwaterloo.ca/*",
+        "*://*.outline.uwaterloo.ca/*",
+        "*://*.uwflow.com/*",
+        "*://*.reddit.com/*"
+      ]
+    }
+  ]
 }

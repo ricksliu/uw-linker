@@ -1,5 +1,5 @@
 try {
-  importScripts('./utility.js');
+  importScripts('./utility/utility.js');
 } catch (e) {
   console.error(e);
 }

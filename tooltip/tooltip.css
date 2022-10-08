@@ -1,0 +1,20 @@
+.uwl-tooltip-marker {
+  position: relative;
+  color: red;
+}
+
+.uwl-tooltip {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  background-color: blue;
+  z-index: 1000;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.uwl-tooltip.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
