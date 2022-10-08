@@ -38,13 +38,13 @@ function formatCourseCode(courseCode) {
   while (true) {
     const oldCourseCode = courseCode;
     courseCode = courseCode.replace('  ', ' ');
-    if (oldCourseCode == courseCode) {
+    if (oldCourseCode === courseCode) {
       break;
     }
   }
 
   const index = courseCode.search(/[0-9]/);
-  if (courseCode[index - 1] == ' ') {
+  if (courseCode[index - 1] === ' ') {
     return courseCode;
   }
   return courseCode.substring(0, index) + ' ' + courseCode.substring(index);
@@ -55,24 +55,6 @@ function toElem(html) {
   wrapper.innerHTML= html;
   return wrapper.firstChild;
 }
-
-const isUrl = {
-  uwaterlooUgradcalendar: url => {
-    return url.search(/.*ugradcalendar\.uwaterloo\.ca.*/) != -1;
-  },
-  uwaterlooUcalendar: url => {
-    return url.search(/.*ucalendar\.uwaterloo\.ca.*/) != -1;
-  },
-  uwaterlooOutline: url => {
-    return url.search(/.*outline\.uwaterloo\.ca.*/) != -1;
-  },
-  uwflow: url => {
-    return url.search(/.*uwflow\.com.*/) != -1;
-  },
-  reddit: url => {
-    return url.search(/.*reddit\.com.*/) != -1;
-  }
-};
 
 const getUrl = {
   uwaterlooUcalendar: courseCode => {

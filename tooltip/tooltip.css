@@ -1,13 +1,15 @@
 .uwl-tooltip-marker {
   position: relative;
-  color: red;
+  /* color: red; */
 }
 
 .uwl-tooltip {
   position: absolute;
-  width: 10rem;
-  height: 10rem;
-  background-color: blue;
+  width: 16rem;
+  padding: 0.5rem 0.5rem 0;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem 0.25rem #ccc;
   z-index: 1000;
   visibility: visible;
   opacity: 1;
@@ -17,4 +19,8 @@
 .uwl-tooltip.hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+.uwl-tooltip > div {
+  margin-bottom: 0.5rem;
 }

@@ -19,11 +19,9 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.ugradcalendar.uwaterloo.ca/*",
-        "*://*.ucalendar.uwaterloo.ca/*",
-        "*://*.outline.uwaterloo.ca/*",
+        "*://*.uwaterloo.ca/*",
         "*://*.uwflow.com/*",
-        "*://*.reddit.com/*"
+        "*://*.reddit.com/r/uwaterloo/*"
       ],
       "js": [
         "utility/utility.js",
@@ -33,6 +31,46 @@
       "css": [
         "tooltip/tooltip.css"
       ]
+    },
+    {
+      "matches": [
+        "*://*.uwaterloo.ca/*",
+        "*://*.uwflow.com/*",
+        "*://*.reddit.com/r/uwaterloo/*"
+      ],
+      "exclude_matches": [
+        "*://*.ucalendar.uwaterloo.ca/*"
+      ],
+      "js": ["tooltip/tooltipUwaterlooUcalendar.js"],
+      "css": ["tooltip/tooltipUwaterlooUcalendar.css"]
+    },
+    {
+      "matches": [
+        "*://*.uwaterloo.ca/*",
+        "*://*.uwflow.com/*",
+        "*://*.reddit.com/r/uwaterloo/*"
+      ],
+      "exclude_matches": [
+        "*://*.outline.uwaterloo.ca/*"
+      ],
+      "js": ["tooltip/tooltipUwaterlooOutline.js"],
+      "css": ["tooltip/tooltipUwaterlooOutline.css"]
+    },
+    {
+      "matches": [
+        "*://*.uwaterloo.ca/*",
+        "*://*.reddit.com/r/uwaterloo/*"
+      ],
+      "js": ["tooltip/tooltipUwflow.js"],
+      "css": ["tooltip/tooltipUwflow.css"]
+    },
+    {
+      "matches": [
+        "*://*.uwaterloo.ca/*",
+        "*://*.uwflow.com/*"
+      ],
+      "js": ["tooltip/tooltipReddit.js"],
+      "css": ["tooltip/tooltipReddit.css"]
     }
   ],
   "action": {

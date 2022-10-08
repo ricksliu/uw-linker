@@ -2,7 +2,37 @@ const ADD_TOOLTIP_DELAY = 500;
 const REMOVE_TOOLTIP_DELAY = 500;
 
 let nextId = 0;
-let tooltips = {}
+let tooltips = {};
+let tooltipModules = [];
+
+function getTooltipMarkerHTML(courseCode, id) {
+  return `<span
+    class="uwl-tooltip-marker"
+    data-uwl-course-code="${formatCourseCode(courseCode)}"
+    data-uwl-id="${id}"
+  >
+    ${courseCode}
+  </span>`;
+}
+
+// Insert a new HTML generating function into tooltipModules, sorted by priority ascending
+function addTooltipModule(tooltipModule, priority) {
+  for (let i = 0; i < tooltipModules.length; ++i) {
+    if (priority < tooltipModules[i][1]) {
+      tooltipModules.splice(i, 0, [tooltipModule, priority]);
+      return;
+    }
+  }
+  tooltipModules.push([tooltipModule, priority]);
+}
+
+function getTooltipElemHTML(courseCode) {
+  let html = '';
+  tooltipModules.forEach(tooltipModule => {
+    html += tooltipModule[0](courseCode);
+  });
+  return html;
+}
 
 function addTooltip(markerElem) {
   let tooltipElem = document.createElement('div');
@@ -10,6 +40,7 @@ function addTooltip(markerElem) {
   tooltipElem.classList.add('hidden');
   tooltipElem.dataset.uwlCourseCode = markerElem.dataset.uwlCourseCode;
   tooltipElem.dataset.uwlId = markerElem.dataset.uwlId;
+  tooltipElem.innerHTML = getTooltipElemHTML(markerElem.dataset.uwlCourseCode);
 
   tooltipElem.style.left = `${mouseX}px`;
   tooltipElem.style.top = `${mouseY}px`;
@@ -43,7 +74,7 @@ function hideTooltip(tooltipElem) {
 }
 
 function onMarkerMouseOver(e) {
-  let markerElem = e.target;
+  let markerElem = e.target.closest('.uwl-tooltip-marker');
   eventHappenedDuringInterval(markerElem, 'mouseout', ADD_TOOLTIP_DELAY).then((eventHappened) => {
     if (eventHappened) {
       return;
@@ -61,13 +92,12 @@ function onMarkerTooltipMouseOut(markerElem, tooltipElem) {
     if (eventsHappened[0] || eventsHappened[1]) {
       return;
     }
-
     hideTooltip(tooltipElem);
   });
 }
 
 function onMarkerMouseOut(e) {
-  let markerElem = e.target;
+  let markerElem = e.target.closest('.uwl-tooltip-marker');
   let tooltipElem = tooltips[markerElem.dataset.uwlId].tooltipElem;
   if (!tooltipElem) {
     return;
@@ -76,7 +106,7 @@ function onMarkerMouseOut(e) {
 }
 
 function onTooltipMouseOut(e) {
-  let tooltipElem = e.target;
+  let tooltipElem = e.target.closest('.uwl-tooltip');
   let markerElem = tooltips[tooltipElem.dataset.uwlId].markerElem;
   onMarkerTooltipMouseOut(markerElem, tooltipElem);
 }
@@ -89,16 +119,7 @@ function addTooltipMarkers() {
         let newText = textNode.textContent;
 
         courseCodes.forEach(courseCode => {
-          newText = newText.replaceAll(
-            courseCode,
-            `<span
-              class="uwl-tooltip-marker"
-              data-uwl-course-code="${formatCourseCode(courseCode)}"
-              data-uwl-id="${nextId++}"
-            >
-              ${courseCode}
-            </span>`
-          );
+          newText = newText.replaceAll(courseCode, getTooltipMarkerHTML(courseCode, nextId++));
         });
 
         // Cannot directly set textContent as it does not parse HTML 
@@ -124,12 +145,12 @@ function addTooltipMarkers() {
   });
 }
 
+// Call addTooltipMarkers() on startup and DOM updates
 var observer = new MutationObserver(() => {
   observer.disconnect();  // Prevent infinite loop
   addTooltipMarkers();
   observeMutations();
 });
-
 function observeMutations() {
   observer.observe(document, {
     childList: true,
@@ -137,6 +158,5 @@ function observeMutations() {
     subtree: true
   });
 }
-
 addTooltipMarkers();
 observeMutations();
