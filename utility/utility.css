@@ -1,0 +1,14 @@
+:root {
+  --module-padding: 0.5rem;
+  --text-size: 0.8rem;
+  --header-size: 1rem;
+
+  --bg-colour: #fff;
+  --hr-colour: #ddd;
+  --shadow-colour: #bbb;
+  --text-colour: #333;
+  --header-colour: #000;
+  --link-colour: #48f;
+  --link-hover-colour: #5af;
+  --link-active-colour: #6cf;
+}

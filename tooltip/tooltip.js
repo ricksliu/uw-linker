@@ -29,6 +29,9 @@ function addTooltipModule(tooltipModule, priority) {
 function getTooltipElemHTML(courseCode) {
   let html = '';
   tooltipModules.forEach(tooltipModule => {
+    if (html) {
+      html += '<hr />';
+    }
     html += tooltipModule[0](courseCode);
   });
   return html;
@@ -42,26 +45,25 @@ function addTooltip(markerElem) {
   tooltipElem.dataset.uwlId = markerElem.dataset.uwlId;
   tooltipElem.innerHTML = getTooltipElemHTML(markerElem.dataset.uwlCourseCode);
 
-  tooltipElem.style.left = `${mouseX}px`;
-  tooltipElem.style.top = `${mouseY}px`;
-
   tooltipElem.addEventListener('mouseout', onTooltipMouseOut);
 
   document.body.appendChild(tooltipElem);
   tooltips[tooltipElem.dataset.uwlId].tooltipElem = tooltipElem;
 
-  delay(1).then(() => {
-    tooltipElem.classList.remove('hidden');
-  });
+  return tooltipElem;
 }
 
 function showTooltip(markerElem) {
   let tooltipElem = tooltips[markerElem.dataset.uwlId].tooltipElem;
-  if (tooltipElem) {
-    tooltipElem.classList.remove('hidden');
-  } else {
-    addTooltip(markerElem);
+  if (!tooltipElem) {
+    tooltipElem = addTooltip(markerElem);
   }
+
+  tooltipElem.style.left = `${mouseX}px`;
+  tooltipElem.style.top = `${mouseY}px`;
+  delay(1).then(() => {
+    tooltipElem.classList.remove('hidden');
+  });
 }
 
 function removeTooltip(tooltipElem) {
@@ -79,7 +81,6 @@ function onMarkerMouseOver(e) {
     if (eventHappened) {
       return;
     }
-
     showTooltip(markerElem);
   });
 }
@@ -130,9 +131,7 @@ function addTooltipMarkers() {
 
     Array.from(elem.querySelectorAll(':scope > .uwl-tooltip-marker')).forEach(markerElem => {
       if (!(markerElem.dataset.uwlId in tooltips)) {
-        tooltips[markerElem.dataset.uwlId] = {
-          markerElem: markerElem
-        };
+        tooltips[markerElem.dataset.uwlId] = { markerElem: markerElem };
       }
 
       // Prevent multiple listeners being added

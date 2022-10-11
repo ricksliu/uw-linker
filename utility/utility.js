@@ -66,7 +66,7 @@ const getUrl = {
   uwflow: courseCode => {
     return `https://uwflow.com/course/${courseCode.replace(' ', '')}`;
   },
-  reddit: search => {
-    return `https://www.reddit.com/r/uwaterloo/search/?q=${search.replace(' ', '%20')}&restrict_sr=1&sr_nsfw=&include_over_18=1`;
+  reddit: courseCode => {
+    return `https://www.reddit.com/r/uwaterloo/search/?q=&#34;${courseCode.replace(' ', '')}&#34;%20OR%20&#34;${courseCode.replace(' ', '%20')}&#34;&restrict_sr=on&include_over_18=on&sort=relevance&t=all`;
   }
 };

@@ -26,10 +26,13 @@
       "js": [
         "utility/utility.js",
         "utility/mousePos.js",
-        "tooltip/tooltip.js"
+        "tooltip/tooltip.js",
+        "tooltip/tooltipHeader.js"
       ],
       "css": [
-        "tooltip/tooltip.css"
+        "utility/utility.css",
+        "tooltip/tooltip.css",
+        "tooltip/tooltipHeader.css"
       ]
     },
     {
@@ -89,9 +92,7 @@
         "tooltip/*.html"
       ],
       "matches": [
-        "*://*.ugradcalendar.uwaterloo.ca/*",
-        "*://*.ucalendar.uwaterloo.ca/*",
-        "*://*.outline.uwaterloo.ca/*",
+        "*://*.uwaterloo.ca/*",
         "*://*.uwflow.com/*",
         "*://*.reddit.com/*"
       ]

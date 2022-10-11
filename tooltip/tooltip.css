@@ -1,19 +1,21 @@
 .uwl-tooltip-marker {
   position: relative;
-  /* color: red; */
 }
 
 .uwl-tooltip {
   position: absolute;
   width: 16rem;
-  padding: 0.5rem 0.5rem 0;
-  background-color: #fff;
+  padding: 0 var(--module-padding) 0;
+  background-color: var(--bg-colour);
   border-radius: 0.5rem;
-  box-shadow: 0 0 1rem 0.25rem #ccc;
-  z-index: 1000;
+  box-shadow: 0 0 0.25rem 0.1rem var(--shadow-colour);
+  color: var(--text-colour);
+  font-size: var(--text-size);
+  font-family: Verdana, sans-serif !important;
   visibility: visible;
   opacity: 1;
   transition: opacity 0.25s ease, visibility 0.25s ease;
+  z-index: 1000;
 }
 
 .uwl-tooltip.hidden {
@@ -21,6 +23,48 @@
   opacity: 0;
 }
 
-.uwl-tooltip > div {
-  margin-bottom: 0.5rem;
+.uwl-tooltip * {
+  color: var(--text-colour);
+  font-size: var(--text-size);
+  font-family: Verdana, sans-serif !important;
+}
+
+.uwl-tooltip-module {
+  padding: var(--module-padding) 0 var(--module-padding);
+}
+
+.uwl-tooltip > hr {
+  margin: 0;
+  border: 1px solid var(--hr-colour);
+}
+
+.uwl-tooltip-module-footer {
+  display: flex;
+  align-items: center;
+}
+
+.uwl-tooltip-module-footer-icon {
+  width: var(--text-size);
+  height: var(--text-size);
+  margin-right: calc(var(--module-padding) / 2);
+}
+
+.uwl-tooltip-module-footer-link {
+  text-decoration: none !important;
+}
+
+.uwl-tooltip-module-footer-link:link {
+  color: var(--link-colour) !important;
+}
+
+.uwl-tooltip-module-footer-link:visited {
+  color: var(--link-colour) !important;
+}
+
+.uwl-tooltip-module-footer-link:hover {
+  color: var(--link-hover-colour) !important;
+}
+
+.uwl-tooltip-module-footer-link:active {
+  color: var(--link-active-colour) !important;
 }
