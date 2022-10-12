@@ -1,5 +1,6 @@
 const ADD_TOOLTIP_DELAY = 500;
 const REMOVE_TOOLTIP_DELAY = 500;
+const MUTATION_OBSERVER_DELAY = 1000;
 
 let nextId = 0;
 let tooltips = {};
@@ -145,17 +146,29 @@ function addTooltipMarkers() {
 }
 
 // Call addTooltipMarkers() on startup and DOM updates
-var observer = new MutationObserver(() => {
-  observer.disconnect();  // Prevent infinite loop
+function startObserving(observer) {
+  observer.observe(document, { childList: true, characterData: true, subtree: true });
+}
+
+let permObserver = new MutationObserver(() => { handleMutation(); });
+
+function handleMutation() {
+  permObserver.disconnect();  // Prevent infinite loop
   addTooltipMarkers();
-  observeMutations();
-});
-function observeMutations() {
-  observer.observe(document, {
-    childList: true,
-    characterData: true,
-    subtree: true
+
+  let mutationHappened = false;
+  let tempObserver = new MutationObserver(() => { mutationHappened = true; });
+  startObserving(tempObserver);
+
+  delay(MUTATION_OBSERVER_DELAY).then(() => {
+    tempObserver.disconnect();
+    if (mutationHappened) {
+      handleMutation();
+    } else {
+      startObserving(permObserver);
+    }
   });
 }
+
 addTooltipMarkers();
-observeMutations();
+startObserving(permObserver);
