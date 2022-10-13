@@ -25,6 +25,7 @@
       ],
       "js": [
         "utility/utility.js",
+        "utility/links.js",
         "utility/mousePos.js",
         "tooltip/tooltip.js",
         "tooltip/tooltipHeader.js"

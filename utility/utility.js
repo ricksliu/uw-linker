@@ -22,7 +22,7 @@ function eventHappenedDuringInterval(elem, eventStr, ms) {
   });
 }
 
-// Get array of course codes in string
+// Find and return course codes contained in string
 function getCourseCodes(str) {
   let courseCodes = [];
   COURSE_CODE_REGEXES.forEach(regex => {
@@ -50,23 +50,7 @@ function formatCourseCode(courseCode) {
   return courseCode.substring(0, index) + ' ' + courseCode.substring(index);
 }
 
-function toElem(html) {
-  var wrapper = document.createElement('div');
-  wrapper.innerHTML= html;
-  return wrapper.firstChild;
+// Format course code to 'xxx123' format
+function formatCourseCodeLower(courseCode) {
+  return formatCourseCode(courseCode).replace(' ', '').toLowerCase();
 }
-
-const getUrl = {
-  uwaterlooUcalendar: courseCode => {
-    return `https://ucalendar.uwaterloo.ca/2223/COURSE/course-${courseCode.split(' ')[0]}.html#${courseCode.replace(' ', '')}`;
-  },
-  uwaterlooOutline: courseCode => {
-    return `https://outline.uwaterloo.ca/browse/search/?q=${courseCode.replace(' ', '+')}&term=`;
-  },
-  uwflow: courseCode => {
-    return `https://uwflow.com/course/${courseCode.replace(' ', '')}`;
-  },
-  reddit: courseCode => {
-    return `https://www.reddit.com/r/uwaterloo/search/?q=&#34;${courseCode.replace(' ', '')}&#34;%20OR%20&#34;${courseCode.replace(' ', '%20')}&#34;&restrict_sr=on&include_over_18=on&sort=relevance&t=all`;
-  }
-};

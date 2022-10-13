@@ -16,26 +16,15 @@ function getTooltipMarkerHTML(courseCode, id) {
   </span>`;
 }
 
-// Insert a new HTML generating function into tooltipModules, sorted by priority ascending
-function addTooltipModule(tooltipModule, priority) {
+// Insert promise generating function that returns HTML into tooltipModules, sorted by ascending priority
+function addTooltipModule(getTooltipModuleHTML, priority) {
   for (let i = 0; i < tooltipModules.length; ++i) {
     if (priority < tooltipModules[i][1]) {
-      tooltipModules.splice(i, 0, [tooltipModule, priority]);
+      tooltipModules.splice(i, 0, [getTooltipModuleHTML, priority]);
       return;
     }
   }
-  tooltipModules.push([tooltipModule, priority]);
-}
-
-function getTooltipElemHTML(courseCode) {
-  let html = '';
-  tooltipModules.forEach(tooltipModule => {
-    if (html) {
-      html += '<hr />';
-    }
-    html += tooltipModule[0](courseCode);
-  });
-  return html;
+  tooltipModules.push([getTooltipModuleHTML, priority]);
 }
 
 function addTooltip(markerElem) {
@@ -44,10 +33,25 @@ function addTooltip(markerElem) {
   tooltipElem.classList.add('hidden');
   tooltipElem.dataset.uwlCourseCode = markerElem.dataset.uwlCourseCode;
   tooltipElem.dataset.uwlId = markerElem.dataset.uwlId;
-  tooltipElem.innerHTML = getTooltipElemHTML(markerElem.dataset.uwlCourseCode);
+
+  tooltipModules.map(tooltipModule => tooltipModule[0]).forEach(getTooltipModuleHTML => {
+    if (tooltipElem.hasChildNodes()) {
+      tooltipElem.appendChild(document.createElement('hr'));
+    }
+
+    // Append temporary element, then replace it when promise resolves
+    let tooltipModuleElem = document.createElement('div');
+    tooltipModuleElem.classList.add(`uwl-tooltip-${getTooltipModuleHTML.name}-module`);
+    tooltipElem.appendChild(tooltipModuleElem);
+
+    getTooltipModuleHTML(markerElem.dataset.uwlCourseCode).then(html => {
+      tooltipModuleElem.outerHTML = html;
+    }).catch(html => {
+      tooltipModuleElem.outerHTML = html;
+    });
+  });
 
   tooltipElem.addEventListener('mouseout', onTooltipMouseOut);
-
   document.body.appendChild(tooltipElem);
   tooltips[tooltipElem.dataset.uwlId].tooltipElem = tooltipElem;
 
@@ -62,6 +66,7 @@ function showTooltip(markerElem) {
 
   tooltipElem.style.left = `${mouseX}px`;
   tooltipElem.style.top = `${mouseY}px`;
+
   delay(1).then(() => {
     tooltipElem.classList.remove('hidden');
   });
@@ -156,6 +161,7 @@ function handleMutation() {
   permObserver.disconnect();  // Prevent infinite loop
   addTooltipMarkers();
 
+  // If another mutation is observed during a timespan, call handleMutation() again after
   let mutationHappened = false;
   let tempObserver = new MutationObserver(() => { mutationHappened = true; });
   startObserving(tempObserver);
