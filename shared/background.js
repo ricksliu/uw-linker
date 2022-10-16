@@ -1,6 +1,6 @@
 try {
-  importScripts('./utility/utility.js');
-  importScripts('./utility/links.js');
+  importScripts('./utility.js');
+  importScripts('./links.js');
 } catch (error) {
   console.error(error);
 }

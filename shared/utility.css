@@ -1,13 +1,16 @@
 :root {
-  --module-padding: 0.5rem;
+  --caption-size: 0.6rem;
   --text-size: 0.8rem;
-  --header-size: 1rem;
+  --heading-size: 1rem;
 
   --bg-colour: #fff;
   --hr-colour: #ddd;
-  --shadow-colour: #bbb;
-  --text-colour: #333;
-  --header-colour: #000;
+  --shadow-colour: #7f7f7f7f;
+
+  --caption-colour: #888;
+  --text-colour: #444;
+  --heading-colour: #000;
+
   --link-colour: #48f;
   --link-hover-colour: #5af;
   --link-active-colour: #6cf;
