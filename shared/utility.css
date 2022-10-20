@@ -1,17 +1,20 @@
 :root {
-  --caption-size: 0.6rem;
+  --caption-size: 0.7rem;
   --text-size: 0.8rem;
-  --heading-size: 1rem;
+  --heading-size: 0.95rem;
 
   --bg-colour: #fff;
   --hr-colour: #ddd;
   --shadow-colour: #7f7f7f7f;
 
-  --caption-colour: #888;
-  --text-colour: #444;
+  --caption-colour: #666;
+  --text-colour: #000;
   --heading-colour: #000;
 
   --link-colour: #48f;
   --link-hover-colour: #5af;
   --link-active-colour: #6cf;
+
+  --uwflow-chart-bar-colour: #0052cc;
+  --uwflow-chart-bg-colour: #dfe1e5;
 }

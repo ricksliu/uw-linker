@@ -8,8 +8,8 @@
 
 .uwl-tooltip {
   position: absolute;
-  width: 16rem;
-  padding: 0 var(--tooltip-module-padding) 0;
+  width: 20rem;
+  padding: var(--tooltip-module-padding);
   background-color: var(--bg-colour);
   border-radius: 0.5rem;
   box-shadow: 0 0 0.25rem 0.1rem var(--shadow-colour);
@@ -33,12 +33,56 @@
   font-family: Verdana, sans-serif !important;
 }
 
+.uwl-tooltip .uwl-heading {
+  color: var(--heading-colour) !important;
+  font-size: var(--heading-size) !important;
+}
+
+.uwl-tooltip .uwl-heading * {
+  color: var(--heading-colour) !important;
+  font-size: var(--heading-size) !important;
+}
+
+.uwl-tooltip .uwl-caption {
+  color: var(--caption-colour) !important;
+  font-size: var(--caption-size) !important;
+}
+
+.uwl-tooltip .uwl-caption * {
+  color: var(--caption-colour) !important;
+  font-size: var(--caption-size) !important;
+}
+
 .uwl-tooltip .uwl-module {
-  padding: var(--tooltip-module-padding) 0 var(--tooltip-module-padding);
+  margin: var(--tooltip-module-padding) 0 var(--tooltip-module-padding);
+}
+
+.uwl-tooltip .uwl-module:first-child {
+  margin-top: 0;
+}
+
+.uwl-tooltip .uwl-module:last-child {
+  margin-bottom: 0;
+}
+
+.uwl-tooltip .uwl-module .uwl-section {
+  margin: var(--tooltip-module-padding) 0 var(--tooltip-module-padding);
+}
+
+.uwl-tooltip .uwl-module .uwl-section:first-child {
+  margin-top: 0;
+}
+
+.uwl-tooltip .uwl-module .uwl-section:last-child {
+  margin-bottom: 0;
 }
 
 .uwl-tooltip hr {
   margin: 0;
+  border: 1px solid var(--hr-colour);
+}
+
+.uwl-tooltip .uwl-vr {
   border: 1px solid var(--hr-colour);
 }
 

@@ -25,7 +25,7 @@ function onCourseMouseOut(e) {
 }
 
 function initCourses() {
-  initTags(courses, 'uwl-course', getCourseCodes, formatCourseCode, onCourseMouseOver, onCourseMouseOut);
+  initTags(courses, 'uwl-course', getCourseCodes, formatCourseCode, onCourseMouseOver, onCourseMouseOut, ['.uwl-course-code']);
 }
 
 onDOMChange(initCourses);

@@ -27,12 +27,14 @@
         "shared/utility.js",
         "shared/links.js",
         "shared/mousePos.js",
+        "shared/chart.js",
         "shared/tooltip.js",
         "courseTooltip/tooltip.js",
         "courseTooltip/moduleInfo.js"
       ],
       "css": [
         "shared/utility.css",
+        "shared/chart.css",
         "shared/tooltip.css",
         "courseTooltip/tooltip.css",
         "courseTooltip/moduleInfo.css"

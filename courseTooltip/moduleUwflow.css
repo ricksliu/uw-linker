@@ -1,0 +1,49 @@
+.uwl-tooltip .uwl-uwflow-module .uwl-rating {
+  display: flex;
+  align-items: center;
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-liked {
+  flex-shrink: 0;
+  margin-right: var(--tooltip-module-padding);
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-liked-stat {
+  text-align: center;
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-liked-label {
+  text-align: center;
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-easy-useful-container {
+  flex-grow: 1;
+  margin: auto 0 auto;
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-easy-useful-label {
+  flex-grow: 1;
+  line-height: var(--text-size);
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-easy-useful-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: calc(var(--tooltip-module-padding) / 2);
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-easy-useful {
+  flex-grow: 1;
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-easy-useful-stat {
+  flex-basis: 2.5rem;
+  flex-shrink: 0;
+  line-height: var(--text-size);
+  text-align: right;
+  margin-left: calc(var(--tooltip-module-padding) / 2);
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-useful-label {
+  margin-top: calc(var(--tooltip-module-padding) * 3);
+}

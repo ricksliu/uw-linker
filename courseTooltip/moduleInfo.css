@@ -1,0 +1,19 @@
+.uwl-tooltip .uwl-info-module .uwl-name-course-code {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: calc(var(--tooltip-module-padding) / 2);
+}
+
+.uwl-tooltip .uwl-info-module .uwl-course-code {
+  flex-shrink: 0;
+  margin: auto calc(var(--tooltip-module-padding) / 2) auto 0;
+}
+
+.uwl-tooltip .uwl-info-module .uwl-name {
+  flex-grow: 1;
+  margin: auto 0 auto calc(var(--tooltip-module-padding) / 2);
+}
+
+.uwl-tooltip .uwl-info-module .uwl-description {
+  margin-top: calc(var(--tooltip-module-padding) / 2);
+}

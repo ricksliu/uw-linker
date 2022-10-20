@@ -107,24 +107,34 @@ function onTooltipMouseOut(e, tags) {
 }
 
 // Helper function
-function getTagHTML(tagClass, tagCode) {
+function getTagHTML(tagClass, tagCode, tagId) {
   return `<span
     class="uwl-tag ${tagClass}"
     data-uwl-code="${tagCode}"
-    data-uwl-id="${nextTagId++}"
-  >
-    ${tagCode}
-  </span>`;
+    data-uwl-id="${tagId}"
+  >${tagCode}</span>`;
 }
 
-function initTags(tags, tagClass, getTagCodes, formatTagCode, onTagMouseOver, onTagMouseOut) {
-  document.querySelectorAll(`*:not(.${tagClass})`).forEach(elem => {
+function initTags(tags, tagClass, getTagCodes, formatTagCode, onTagMouseOver, onTagMouseOut, notSelectors = []) {
+  let selectors = `*:not(.${tagClass})`;
+  notSelectors.forEach(selector => { selectors += `:not(${selector})`; });
+  document.querySelectorAll(selectors).forEach(elem => {
     Array.from(elem.childNodes).filter(child => child.nodeType === 3).forEach(textNode => {  
       const tagCodes = [...new Set(getTagCodes(textNode.textContent))];
       if (tagCodes.length > 0) {
         let newText = textNode.textContent;
         tagCodes.forEach(tagCode => {
-          newText = newText.replaceAll(tagCode, getTagHTML(tagClass, formatTagCode(tagCode)));
+          newText = newText.replaceAll(tagCode, getTagHTML(tagClass, formatTagCode(tagCode), nextTagId++));
+          const oldTagId = nextTagId - 1;
+          while (true) {
+            const oldText = newText;
+            newText = newText.replace(`data-uwl-id="${oldTagId}"`, `data-uwl-id="${nextTagId++}"`);
+            if (oldText == newText) {
+              break;
+            } else {
+              console.log(newText);
+            }
+          }
         });
 
         // Cannot directly set textContent as it does not parse HTML 
