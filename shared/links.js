@@ -64,8 +64,7 @@ function fetchUwflowCourse(courseCode) {
       liked: data.rating.liked,
       easy: data.rating.easy,
       useful: data.rating.useful,
-      numRatings: data.rating.filled_count,
-      found: true
+      numRatings: data.rating.filled_count
     };
   });
 }
