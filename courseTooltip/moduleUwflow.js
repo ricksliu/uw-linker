@@ -8,7 +8,7 @@ function getCourseTooltipUwflowModule(course) {
   const courseCode = course.dataset.uwlCode;
   return new Promise(resolve => {
     chrome.runtime.sendMessage({ tooltipModule: 'uwflow', courseCode: courseCode }, response => {
-      const pieChartInnerHTML = `<div class="uwl-heading uwl-liked-stat">${formatUwflowPercentage(response.liked)}</div><div class="uwl-caption uwl-liked-label">liked</div>`;
+      const pieChartInnerHTML = `<div class="uwl-heading uwl-bold uwl-liked-stat">${formatUwflowPercentage(response.liked)}</div><div class="uwl-caption uwl-liked-label">liked</div>`;
       resolve(`<div
         class="uwl-module uwl-uwflow-module"
       >
@@ -18,13 +18,14 @@ function getCourseTooltipUwflowModule(course) {
             <div class="uwl-easy-useful-label uwl-easy-label">Easy</div>
             <div class="uwl-easy-useful-wrapper uwl-easy-wrapper">
               ${getBarChartHTML(response.easy * 100, '100%', COURSE_TOOLTIP_UWFLOW_BAR_WIDTH, ['uwl-uwflow-theme', 'uwl-easy-useful', 'uwl-easy'])}
-              <div class="uwl-easy-useful-stat uwl-easy-stat">${formatUwflowPercentage(response.easy)}</div>
+              <div class="uwl-bold uwl-easy-useful-stat uwl-easy-stat">${formatUwflowPercentage(response.easy)}</div>
             </div>
             <div class="uwl-easy-useful-label uwl-useful-label">Useful</div>
             <div class="uwl-easy-useful-wrapper uwl-useful-wrapper">
               ${getBarChartHTML(response.useful * 100, '100%', COURSE_TOOLTIP_UWFLOW_BAR_WIDTH, ['uwl-uwflow-theme', 'uwl-easy-useful', 'uwl-useful'])}
-              <div class="uwl-easy-useful-stat uwl-useful-stat">${formatUwflowPercentage(response.useful)}</div>
+              <div class="uwl-bold uwl-easy-useful-stat uwl-useful-stat">${formatUwflowPercentage(response.useful)}</div>
             </div>
+            <div class="uwl-caption uwl-num-ratings">${response.numRatings} ratings</div>
           </div>
         </div>
         <div class="uwl-section uwl-footer">

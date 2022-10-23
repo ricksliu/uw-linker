@@ -14,6 +14,49 @@
   margin: auto 0 auto calc(var(--tooltip-module-padding) / 2);
 }
 
+.uwl-tooltip .uwl-info-module .uwl-pin-controller {
+  flex-shrink: 0;
+  width: var(--text-size);
+  height: var(--text-size);
+  margin: auto 0 auto calc(var(--tooltip-module-padding) / 2);
+}
+
+.uwl-tooltip:not(.pinned) .uwl-info-module .uwl-pin-controller {
+  filter: invert(1) brightness(0.7);
+}
+
+.uwl-tooltip:not(.pinned) .uwl-info-module .uwl-pin-controller:hover {
+  filter: invert(1) brightness(0.7) drop-shadow(0 0 0.15rem var(--shadow-colour));
+}
+
+.uwl-tooltip.pinned .uwl-info-module .uwl-pin-controller {
+  filter: invert(1) brightness(0);
+}
+
+.uwl-tooltip.pinned .uwl-info-module .uwl-pin-controller:hover {
+  filter: invert(1) brightness(0) drop-shadow(0 0 0.15rem var(--shadow-colour));
+}
+
 .uwl-tooltip .uwl-info-module .uwl-description {
   margin-top: calc(var(--tooltip-module-padding) / 2);
+  margin-bottom: calc(var(--tooltip-module-padding) / 2);
+}
+
+.uwl-tooltip .uwl-info-module .uwl-reqs {
+  border-collapse: collapse;
+  margin-top: calc(var(--tooltip-module-padding) / 2);
+}
+
+.uwl-tooltip .uwl-info-module .uwl-req td {
+  padding: calc(var(--tooltip-module-padding) / 2) 0 0;
+}
+
+.uwl-tooltip .uwl-info-module .uwl-req:first-child td {
+  padding-top: 0;
+}
+
+.uwl-tooltip .uwl-info-module .uwl-reqs .uwl-bold {
+  line-height: var(--caption-size);
+  text-align: right;
+  white-space: pre;
 }

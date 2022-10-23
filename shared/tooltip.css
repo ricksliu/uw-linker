@@ -53,6 +53,14 @@
   font-size: var(--caption-size) !important;
 }
 
+.uwl-tooltip .uwl-bold {
+  font-weight: bold !important;
+}
+
+.uwl-tooltip .uwl-bold * {
+  font-weight: bold !important;
+}
+
 .uwl-tooltip .uwl-module {
   margin: var(--tooltip-module-padding) 0 var(--tooltip-module-padding);
 }

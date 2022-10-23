@@ -44,6 +44,16 @@
   margin-left: calc(var(--tooltip-module-padding) / 2);
 }
 
+.uwl-tooltip .uwl-uwflow-module .uwl-easy-label {
+  margin-top: calc(var(--tooltip-module-padding) / 2);
+}
+
 .uwl-tooltip .uwl-uwflow-module .uwl-useful-label {
-  margin-top: calc(var(--tooltip-module-padding) * 3);
+  margin-top: calc(var(--tooltip-module-padding) * 2);
+}
+
+.uwl-tooltip .uwl-uwflow-module .uwl-num-ratings {
+  margin-top: var(--tooltip-module-padding);
+  line-height: var(--text-size);
+  text-align: right;
 }

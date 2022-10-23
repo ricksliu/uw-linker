@@ -25,6 +25,7 @@ function fetchUwflowCourse(courseCode) {
           `query getCourse($code: String) {
             course(where: {code: {_eq: $code}}) {
               ...CourseInfo
+              ...CourseRequirements
               ...CourseRating
             }
           }
@@ -34,12 +35,19 @@ function fetchUwflowCourse(courseCode) {
             name
             description
           }
+          fragment CourseRequirements on course {
+            id
+            antireqs
+            prereqs
+            coreqs
+          }
           fragment CourseRating on course {
             id
             rating {
               liked
               easy
               useful
+              filled_count
             }
           }`
       }
@@ -50,9 +58,14 @@ function fetchUwflowCourse(courseCode) {
       courseCode: data.code,
       name: data.name,
       description: data.description,
+      prereqs: data.prereqs,
+      coreqs: data.coreqs,
+      antireqs: data.antireqs,
       liked: data.rating.liked,
       easy: data.rating.easy,
       useful: data.rating.useful,
+      numRatings: data.rating.filled_count,
+      found: true
     };
   });
 }

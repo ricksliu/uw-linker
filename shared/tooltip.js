@@ -16,7 +16,7 @@ function registerTooltipModule(modules, getModuleHTML, priority) {
 }
 
 // Helper function
-function attachTooltipModules(tooltip, modules) {
+function attachTooltipModules(tooltip, modules, tags) {
   modules.map(module => module[0]).forEach(getModuleHTML => {
     if (tooltip.hasChildNodes()) {
       tooltip.appendChild(document.createElement('hr'));
@@ -28,9 +28,17 @@ function attachTooltipModules(tooltip, modules) {
     tooltip.appendChild(module);
 
     getModuleHTML(tooltip).then(html => {
-      module.outerHTML = html;
+      module.innerHTML = html;
+      module = module.firstChild;
     }).catch(html => {
-      module.outerHTML = html;
+      module.innerHTML = html;
+      module = module.firstChild;
+    }).finally(() => {
+      Array.from(module.querySelectorAll('.uwl-pin-controller')).forEach(pinController => {
+        pinController.addEventListener('click', () => {
+          tooltip.classList.toggle('pinned');
+        });
+      });
     });
   });
 }
@@ -42,7 +50,7 @@ function addTooltip(tag, tags, tooltipModules) {
     tooltip.dataset[attribute] = tag.dataset[attribute];
   }
 
-  attachTooltipModules(tooltip, tooltipModules);
+  attachTooltipModules(tooltip, tooltipModules, tags);
 
   tooltip.addEventListener('mouseout', e => { onTooltipMouseOut(e, tags); });
   document.body.appendChild(tooltip);
@@ -56,6 +64,9 @@ function showTooltip(tag, tags, addTooltip) {
   if (!tooltip) {
     tooltip = addTooltip(tag);
   }
+  if (tooltip.classList.contains('pinned')) {
+    return;
+  }
 
   tooltip.style.left = `${mouseX}px`;
   tooltip.style.top = `${mouseY}px`;
@@ -67,6 +78,9 @@ function showTooltip(tag, tags, addTooltip) {
 
 // Helper function
 function hideTooltip(tooltip) {
+  if (tooltip.classList.contains('pinned')) {
+    return;
+  }
   tooltip.classList.add('hidden');
 }
 
@@ -107,10 +121,10 @@ function onTooltipMouseOut(e, tags) {
 }
 
 // Helper function
-function getTagHTML(tagClass, tagCode, tagId) {
+function getTagHTML(tagClass, tagCode, formatTagCode, tagId) {
   return `<span
     class="uwl-tag ${tagClass}"
-    data-uwl-code="${tagCode}"
+    data-uwl-code="${formatTagCode(tagCode)}"
     data-uwl-id="${tagId}"
   >${tagCode}</span>`;
 }
@@ -118,21 +132,19 @@ function getTagHTML(tagClass, tagCode, tagId) {
 function initTags(tags, tagClass, getTagCodes, formatTagCode, onTagMouseOver, onTagMouseOut, notSelectors = []) {
   let selectors = `*:not(.${tagClass})`;
   notSelectors.forEach(selector => { selectors += `:not(${selector})`; });
-  document.querySelectorAll(selectors).forEach(elem => {
+  Array.from(document.querySelectorAll(selectors)).forEach(elem => {
     Array.from(elem.childNodes).filter(child => child.nodeType === 3).forEach(textNode => {  
       const tagCodes = [...new Set(getTagCodes(textNode.textContent))];
       if (tagCodes.length > 0) {
         let newText = textNode.textContent;
         tagCodes.forEach(tagCode => {
-          newText = newText.replaceAll(tagCode, getTagHTML(tagClass, formatTagCode(tagCode), nextTagId++));
+          newText = newText.replaceAll(tagCode, getTagHTML(tagClass, tagCode, formatTagCode, nextTagId++));
           const oldTagId = nextTagId - 1;
           while (true) {
             const oldText = newText;
             newText = newText.replace(`data-uwl-id="${oldTagId}"`, `data-uwl-id="${nextTagId++}"`);
             if (oldText == newText) {
               break;
-            } else {
-              console.log(newText);
             }
           }
         });
@@ -145,7 +157,9 @@ function initTags(tags, tagClass, getTagCodes, formatTagCode, onTagMouseOver, on
 
     Array.from(elem.querySelectorAll(`:scope > .${tagClass}`)).forEach(tag => {
       if (!(tag.dataset.uwlId in tags)) {
-        tags[tag.dataset.uwlId] = { tag: tag };
+        tags[tag.dataset.uwlId] = {
+          tag: tag
+        };
       }
 
       tag.removeEventListener('mouseover', onTagMouseOver);
