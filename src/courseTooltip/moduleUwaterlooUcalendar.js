@@ -5,7 +5,7 @@ function getCourseTooltipUwaterlooUcalendarModule(course) {
       class="uwl-module uwl-uwaterloo-ucalendar-module"
     >
       <div class="uwl-section uwl-footer">
-        <img class="uwl-icon" src="${chrome.runtime.getURL("res/calendar-icon-32.png")}" alt="uwaterloo calendar icon" width="32" height="32">
+        <img class="uwl-icon" src="${chrome.runtime.getURL("assets/calendar-icon-32.png")}" alt="uwaterloo calendar icon" width="32" height="32">
         <a class="uwl-link" href="${getUrl.uwaterlooUcalendar(courseCode)}" target="_blank">Go to ucalendar.uwaterloo.ca</a>
       </div>
     </div>`);

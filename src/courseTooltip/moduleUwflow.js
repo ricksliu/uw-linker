@@ -29,7 +29,7 @@ function getCourseTooltipUwflowModule(course) {
           </div>
         </div>
         <div class="uwl-section uwl-footer">
-          <img class="uwl-icon" src="${chrome.runtime.getURL("res/uwflow-icon-32.png")}" alt="uwflow icon" width="32" height="32">
+          <img class="uwl-icon" src="${chrome.runtime.getURL("assets/uwflow-icon-32.png")}" alt="uwflow icon" width="32" height="32">
           <a class="uwl-link" href="${getUrl.uwflow(courseCode)}" target="_blank">Go to UW Flow</a>
         </div>
       </div>`);

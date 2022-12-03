@@ -5,7 +5,7 @@ function getCourseTooltipUwaterlooOutlineModule(course) {
       class="uwl-module uwl-uwaterloo-outline-module"
     >
       <div class="uwl-section uwl-footer">
-        <img class="uwl-icon" src="${chrome.runtime.getURL("res/spreadsheet-icon-32.png")}" alt="uwaterloo outline icon" width="32" height="32">
+        <img class="uwl-icon" src="${chrome.runtime.getURL("assets/spreadsheet-icon-32.png")}" alt="uwaterloo outline icon" width="32" height="32">
         <a class="uwl-link" href="${getUrl.uwaterlooOutline(courseCode)}" target="_blank">Search outline.uwaterloo.ca</a>
       </div>
     </div>`);

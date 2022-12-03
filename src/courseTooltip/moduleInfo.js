@@ -9,7 +9,7 @@ function getCourseTooltipInfoModule(course) {
           <div class="uwl-heading uwl-course-code">${courseCode}</div>
           <div class="uwl-vr"></div>
           <div class="uwl-name">${response.name}</div>
-          <img class="uwl-icon uwl-pin-controller" src="${chrome.runtime.getURL("res/pin-icon-32.png")}" alt="pin icon" width="32" height="32">
+          <img class="uwl-icon uwl-pin-controller" src="${chrome.runtime.getURL("assets/pin-icon-32.png")}" alt="pin icon" width="32" height="32">
         </div>
         <div class="uwl-section uwl-caption uwl-description">${response.description}</div>
         ${response.prereqs || response.coreqs || response.antireqs ? `<table class="uwl-section uwl-caption uwl-reqs">

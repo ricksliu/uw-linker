@@ -1,6 +1,6 @@
 # uw-linker
 
-A Chrome extension that adds tooltips linking various University of Waterloo sites and third-party sites together. Made with vanilla HTML/CSS/JS.
+Chrome extension that adds tooltips linking various University of Waterloo sites and third-party sites together. Uses vanilla HTML/CSS/JS.
 
 ## About
 
@@ -14,6 +14,6 @@ Course Tooltips:
 
 - Supports pinning (keep a tooltip open) and nesting (tooltips can open from other tooltips)
 
-![Screenshot of Course Tooltip](docs/screenshot_1.png)
+![Image of course tooltip.](docs/course-tooltip.png)
 
 More types of tooltips may be added in the future.

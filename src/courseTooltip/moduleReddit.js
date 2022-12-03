@@ -5,7 +5,7 @@ function getCourseTooltipRedditModule(course) {
       class="uwl-module uwl-reddit-module"
     >
       <div class="uwl-section uwl-footer">
-        <img class="uwl-icon" src="${chrome.runtime.getURL("res/reddit-icon-32.png")}" alt="reddit icon" width="32" height="32">
+        <img class="uwl-icon" src="${chrome.runtime.getURL("assets/reddit-icon-32.png")}" alt="reddit icon" width="32" height="32">
         <a class="uwl-link" href="${getUrl.reddit(courseCode)}" target="_blank">Search r/uwaterloo</a>
       </div>
     </div>`);
