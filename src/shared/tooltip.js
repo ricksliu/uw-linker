@@ -25,6 +25,7 @@ function attachTooltipModules(tooltip, modules, tags) {
     // Append temporary element, then replace it when getModuleHTML() resolves
     let module = document.createElement('div');
     module.classList.add('uwl-module', 'uwl-temp-module', `uwl-temp-${getModuleHTML.name}-module`);
+    module.innerHTML = getLoaderSpinningHTML('1.6rem');
     tooltip.appendChild(module);
 
     getModuleHTML(tooltip).then(html => {

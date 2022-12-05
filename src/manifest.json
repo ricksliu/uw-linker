@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "UWLinker",
-  "description": "A Chrome extension that adds tooltips linking various University of Waterloo sites and third-party sites together.",
-  "version": "1.0",
+  "description": "Chrome extension that adds tooltips linking various University of Waterloo sites and third-party sites together.",
+  "version": "1.0.1",
   "icons": {
     "16": "assets/uwl-icon-16.png",
     "32": "assets/uwl-icon-32.png",
@@ -23,17 +23,13 @@
         "*://*.reddit.com/r/uwaterloo/*"
       ],
       "js": [
-        "shared/utility.js",
-        "shared/links.js",
-        "shared/mousePos.js",
-        "shared/chart.js",
+        "shared/shared.js",
         "shared/tooltip.js",
         "courseTooltip/tooltip.js",
         "courseTooltip/moduleInfo.js"
       ],
       "css": [
-        "shared/utility.css",
-        "shared/chart.css",
+        "shared/shared.css",
         "shared/tooltip.css",
         "courseTooltip/tooltip.css",
         "courseTooltip/moduleInfo.css"
@@ -48,7 +44,12 @@
       "exclude_matches": [
         "*://*.ucalendar.uwaterloo.ca/*"
       ],
-      "js": ["courseTooltip/moduleUwaterlooUcalendar.js"],
+      "js": [
+        "shared/shared.js",
+        "shared/tooltip.js",
+        "courseTooltip/tooltip.js",
+        "courseTooltip/moduleUwaterlooUcalendar.js"
+      ],
       "css": ["courseTooltip/moduleUwaterlooUcalendar.css"]
     },
     {
@@ -60,7 +61,12 @@
       "exclude_matches": [
         "*://*.outline.uwaterloo.ca/*"
       ],
-      "js": ["courseTooltip/moduleUwaterlooOutline.js"],
+      "js": [
+        "shared/shared.js",
+        "shared/tooltip.js",
+        "courseTooltip/tooltip.js",
+        "courseTooltip/moduleUwaterlooOutline.js"
+      ],
       "css": ["courseTooltip/moduleUwaterlooOutline.css"]
     },
     {
@@ -68,7 +74,12 @@
         "*://*.uwaterloo.ca/*",
         "*://*.reddit.com/r/uwaterloo/*"
       ],
-      "js": ["courseTooltip/moduleUwflow.js"],
+      "js": [
+        "shared/shared.js",
+        "shared/tooltip.js",
+        "courseTooltip/tooltip.js",
+        "courseTooltip/moduleUwflow.js"
+      ],
       "css": ["courseTooltip/moduleUwflow.css"]
     },
     {
@@ -76,7 +87,12 @@
         "*://*.uwaterloo.ca/*",
         "*://*.uwflow.com/*"
       ],
-      "js": ["courseTooltip/moduleReddit.js"],
+      "js": [
+        "shared/shared.js",
+        "shared/tooltip.js",
+        "courseTooltip/tooltip.js",
+        "courseTooltip/moduleReddit.js"
+      ],
       "css": ["courseTooltip/moduleReddit.css"]
     }
   ],

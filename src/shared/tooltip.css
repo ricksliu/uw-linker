@@ -125,3 +125,9 @@
 .uwl-tooltip .uwl-module .uwl-footer .uwl-link:active {
   color: var(--link-active-colour) !important;
 }
+
+.uwl-tooltip .uwl-temp-module {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
