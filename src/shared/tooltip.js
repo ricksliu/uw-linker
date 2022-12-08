@@ -16,6 +16,15 @@ function registerTooltipModule(modules, getModuleHTML, priority) {
 }
 
 // Helper function
+function attachTooltipModulesHandler(module, html) {
+  const fragment = document.createRange().createContextualFragment(html);
+  module.after(fragment);
+  module = module.nextSibling;
+  module.previousSibling.remove();
+  return module;
+}
+
+// Helper function
 function attachTooltipModules(tooltip, modules, tags) {
   modules.map(module => module[0]).forEach(getModuleHTML => {
     if (tooltip.hasChildNodes()) {
@@ -29,11 +38,9 @@ function attachTooltipModules(tooltip, modules, tags) {
     tooltip.appendChild(module);
 
     getModuleHTML(tooltip).then(html => {
-      module.innerHTML = html;
-      module = module.firstChild;
+      module = attachTooltipModulesHandler(module, html);
     }).catch(html => {
-      module.innerHTML = html;
-      module = module.firstChild;
+      module = attachTooltipModulesHandler(module, html);
     }).finally(() => {
       Array.from(module.querySelectorAll('.uwl-pin-controller')).forEach(pinController => {
         pinController.addEventListener('click', () => {

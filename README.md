@@ -14,6 +14,6 @@ Course Tooltips:
 
 - Supports pinning (keep a tooltip open) and nesting (tooltips can open from other tooltips)
 
-![Image of course tooltip.](docs/course-tooltip.png)
+![Image of course tooltip.](docs/course-tooltip-nested.png)
 
 More types of tooltips may be added in the future.

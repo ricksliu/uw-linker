@@ -88,10 +88,12 @@
 .uwl-tooltip hr {
   margin: 0;
   border: 1px solid var(--hr-colour);
+  background-color: var(--hr-colour);
 }
 
 .uwl-tooltip .uwl-vr {
   border: 1px solid var(--hr-colour);
+  background-color: var(--hr-colour);
 }
 
 .uwl-tooltip .uwl-module .uwl-footer {

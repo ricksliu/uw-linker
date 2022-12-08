@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "UWLinker",
   "description": "Chrome extension that adds tooltips linking various University of Waterloo sites and third-party sites together.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "icons": {
     "16": "assets/uwl-icon-16.png",
     "32": "assets/uwl-icon-32.png",
