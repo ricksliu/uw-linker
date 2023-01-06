@@ -2,6 +2,8 @@
 
 Chrome extension that adds tooltips linking various University of Waterloo sites and third-party sites together. Uses vanilla HTML/CSS/JS.
 
+https://chrome.google.com/webstore/detail/uwlinker/dibenafgkoecnpohehnignbpnoccdenp
+
 ## About
 
 Course Tooltips:
